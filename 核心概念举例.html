@@ -1,11 +1,24 @@
-setTimeout 与 闭包。。。
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+ setTimeout 与 闭包。。。
+
 先看下面一个比较坑的代码
 
+<script>
 for (var i=1; i<=5; i++) {
     setTimeout( function timer() {
         console.log(i);
     }, i*1000 );
 }
+</script>
 首先一个for循环， 会执行五次， setTimeout被执行了五次
 
 但里面的timer这时候并没有执行， 而是依次在1 2 3 4 5秒后执行
@@ -30,9 +43,8 @@ timeri 获取全局作用域i， 也就是6， 所以5次timer都是输出6
 
 当加入闭包的时候， 情况就不一样了。
 
- 
 
-复制代码
+<script>
 for (var i=1; i<=5; i++) {
           
             (function(j) {
@@ -40,7 +52,7 @@ for (var i=1; i<=5; i++) {
             })(i)
         }
  
-复制代码
+</script>
  
 
 在 第一次 for循环的时候， 同时又有自执行函数
@@ -72,3 +84,5 @@ for (var i=1; i<=5; i++) {
  
 
 依次类推， 3 4 5; 完成需求！
+</body>
+</html>
